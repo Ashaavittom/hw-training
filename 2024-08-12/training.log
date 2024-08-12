@@ -1,0 +1,20 @@
+1.Linux OS and basic commands
+2.Package installers
+     a.apt-get - how to use apt-get to install programs in ubuntu from the command line
+               - install,uninstall,upgrade,update packages
+               - cleaning,removing packages
+     b.pip     - install,update,upgrade packages
+               - installing a list of packages using pip requirements files
+3. Terminal text editor 
+    a. nano    - how to create file
+               - save,copy,cut,exit key word shotcut
+    b.vim      - Study insert mode,esc mode/command line mode
+4. how to download and install sublim text
+
+5.Completed MongodB topics (Installed and practised commands(Till using command prompt)
+    a. create database
+    b. insert data
+    c. delete data
+    d. update data
+    e. multiple data insertion
+
