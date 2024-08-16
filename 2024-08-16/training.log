@@ -1,0 +1,48 @@
+1. Coverted Fressnapf.xlsx file to Fressnapf.csv file
+2.Import Fressnapf.csv file to mongodb databse
+3.Export Data from MongoDB to company.product.JSON and Json data saved in the document diarectory
+4.Export Data from MongoDB to Fressnapf.csv 
+              
+          i.cleaning Fressnapf.csv data
+          2.remove empty cells with columns
+          3.df_cleaned.to_csv
+     
+
+  import pandas as pd
+
+  # Load the CSV file
+  df = pd.read_csv('/home/cc/asha/Fressnapf.csv')
+
+  # Drop columns with all empty values
+  df_cleaned = df.dropna(axis=1)
+
+  # Save the cleaned CSV file
+  df_cleaned.to_csv('/home/cc/asha/cleaned_file.csv', index=False)
+    
+
+4.Testing
+             
+ import pandas as pd
+
+ # Load the exported data
+ df = pd.read_csv('/home/cc/asha/Fressnapf.csv')
+
+ # Check data types
+ print(df.dtypes)
+
+ # Print the shape of the DataFrame
+ print(f"Number of rows: {df.shape[0]}")
+ print(f"Number of columns: {df.shape[1]}")
+
+ # Check for null values
+ print(df.isna().sum())
+
+ # Check for duplicates
+ print(df.duplicated().sum())
+
+ # Display summary statistics
+ print(df.describe())
+
+ # Display a sample of the DataFrame
+ print("Sample of the DataFrame:")
+ print(df.sample(10))
