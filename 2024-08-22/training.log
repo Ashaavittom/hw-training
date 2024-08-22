@@ -1,0 +1,100 @@
+Conduct team meeting discuss  different testing tools
+Different types of tools used for analyzing data quality
+cleaning sample dataset "autodoc_2024_08_16.csv"
+
+
+     1.using tools Python pandas
+
+import pandas as pd
+import numpy as np
+
+# Load data
+
+df = pd.read_csv('/home/cc/Downloads/autodoc_2024_08_16.csv', on_bad_lines='skip')
+
+print(df.head())
+
+
+# Explore data
+print(df.head())
+print(df.describe())
+print(df.info())
+
+# Handle missing values
+df.dropna(inplace=True)  # Drop rows with missing values
+
+
+# Remove duplicates
+df.drop_duplicates(inplace=True)
+
+# Convert data types
+df['Date'] = pd.to_datetime(df['Date'])
+df['Net price'] = pd.to_datetime(df['Net price'])
+
+# Save cleaned data
+df.to_csv('/home/cc/Downloads/cleaned_dataset.csv', index=False)
+
+
+     2.trying streamlit(visualize cleaned dataset)
+
+import streamlit as st
+import pandas as pd
+import numpy as np
+
+st.title("Dataset Cleaning App")
+
+# File uploader for CSV
+uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
+
+if uploaded_file is not None:
+    # Load data
+    df = pd.read_csv(uploaded_file, on_bad_lines='skip')
+
+    # Display original data
+    st.write("### Original Dataset")
+    st.write(df.head())
+
+    # Explore data
+    st.write("### Dataset Description")
+    st.write(df.describe())
+
+    st.write("### Dataset Info")
+    buffer = df.info(buf=None)
+    st.text(buffer)
+
+    # Handle missing values
+    if st.checkbox("Drop rows with missing values"):
+        df.dropna(inplace=True)
+        st.write("Missing values dropped")
+        st.write(df.head())
+
+    # Remove duplicates
+    if st.checkbox("Remove duplicates"):
+        df.drop_duplicates(inplace=True)
+        st.write("Duplicates removed")
+        st.write(df.head())
+
+    # Convert data types
+    if st.checkbox("Convert 'Date' column to datetime"):
+        df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
+        st.write("Date column converted to datetime")
+        st.write(df.head())
+
+    if st.checkbox("Convert 'Net price' column to datetime"):
+        df['Net price'] = pd.to_datetime(df['Net price'], errors='coerce')
+        st.write("Net price column converted to datetime")
+        st.write(df.head())
+
+    # Save cleaned data
+    if st.button("Save cleaned dataset"):
+        cleaned_file_path = '/home/cc/Downloads/cleaned_dataset.csv'
+        df.to_csv(cleaned_file_path, index=False)
+        st.write(f"Cleaned dataset saved to {cleaned_file_path}")
+    
+    # Option to download cleaned data directly from Streamlit
+    csv = df.to_csv(index=False).encode('utf-8')
+    st.download_button("Download Cleaned Data", csv, "cleaned_dataset.csv", "text/csv")
+
+
+
+     3.trying Dedupe
