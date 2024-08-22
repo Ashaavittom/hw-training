@@ -1,0 +1,67 @@
+Issues find in the data
+- Error Loading: Some rows have more column values than expected, causing loading errors.
+- Date and Time Formats: Dates and times are in object data types and are not in a standard format.
+- Missing Values: The catalogue price column contains missing values.
+
+Tools Used:
+
+    Python pandas
+    Jupyter Lab
+
+
+1: Install Pandas (if not already installed)
+-pip install pandas
+-import pandas as pd
+
+2: Load the Dataset
+
+  file_path = '/home/cc/autodoc_2024_08_16.csv'
+
+- Load the dataset, handling any potential issues with parsing
+
+
+
+3: Inspect the Dataset
+
+-It's important to inspect the dataset to identify issues like missing data, incorrect formatting, or extra/missing columns.
+
+- Display the first few rows to get an overview
+print(df.head())
+
+- Display the structure and summary of the DataFrame
+print(df.info())
+
+- Check for missing values
+print(df.isnull().sum())
+
+4: Handle Missing or Incorrect Data
+-clean the data by handling missing or incorrect data.
+    1. Remove Rows with Missing Data:
+       df_cleaned = df.dropna()
+    2. Remove Duplicate Rows:
+        ◦ Remove any duplicate rows from the dataset:
+       df_no_duplicates = df.drop_duplicates()
+
+5: Correct Data Formats
+-Ensure that the data types are consistent and correct any issues:
+    1. Convert Data Types:
+        ◦ Convert columns to the correct data type if necessary (e.g., converting strings to datetime or numeric values):
+       df['Date'] = pd.to_datetime(df['Date'])
+       df['Net Price'] = pd.to_numeric(df['Net Price'], errors='coerce')
+    2. Handle Extra Delimiters:
+       If there are issues with extra commas or other delimiters in the text fields, you might need to clean those manually or using string operations:
+       p
+       df['Description'] = df['Description'].str.replace(',', ';')
+
+ 8: Save the Cleaned Dataset
+-Once your dataset is cleaned, you can save it to a new file:
+'
+ df.to_csv('/home/asha/cleaned_autodoc_2024_08_16.csv', index=False)
+
+Summary of Key Techniques
+    • Removing missing values: dropna()
+    • Filling missing values: fillna()
+    • Removing duplicates: drop_duplicates()
+    • Converting data types: pd.to_datetime(), pd.to_numeric()
+    • String operations: str.replace(), str.strip()
+ 
