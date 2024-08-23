@@ -1,0 +1,176 @@
+Conduct team meeting discuss  different testing tools
+Different types of tools used for analyzing data quality
+cleaning sample dataset "autodoc_2024_08_16.csv"
+  using tools python pandas
+
+import pandas as pd
+df = pd.read_csv('/home/cc/Downloads/dataset.csv',delimiter =',', on_bad_lines='skip')
+print(df)
+
+# Display the first few rows of the dataset
+print(df.head())
+
+# Check for missing values
+
+missing_values = df.isnull().sum()
+print("Missing values per column:\n", missing_values)
+
+# Check for duplicates
+duplicates = df.duplicated().sum()
+print("Number of duplicate rows: ", duplicates)
+
+# Check data types
+print("Data types of columns:\n", df.dtypes)
+
+# Summary statistics for detecting outliers
+print("Summary statistics:\n", df.describe())
+
+
+df['Description'] = df['Description'].apply(lambda x: x.replace('extra_comma', ''))
+print(df['Description'] )
+
+print(df.columns)
+
+df['Stock'].unique()
+
+df['Stock'] = df['Stock'].str.lower()
+
+df['Stock'] = df['Stock'].replace({
+    'out of stock': 'Out of Stock',
+    'in stock': 'In Stock'
+})
+
+print(df['Stock'].unique())
+
+print(df)
+
+   # Example of replacing date separators
+df['Date'] = df['Date'].str.replace('/', '-').str.replace(',', '')
+df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
+
+print(df)
+  
+# Save the cleaned dataset
+df.to_csv('/home/cc/asha/cleaned_sublimproduct1.csv', index=False)
+
+2. Streamlit tool
+       
+import streamlit as st
+import pandas as pd
+import re 
+from urllib.parse import urlparse
+
+# Title of the app
+st.title("Data Cleaning and Processing App")
+
+# Upload CSV file
+uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
+
+if uploaded_file:
+    # Load the dataset
+    df = pd.read_csv(uploaded_file, delimiter=',', on_bad_lines='skip')
+    
+    # Display the dataframe
+    st.write("### Original Dataset", df)
+
+    # Display the first few rows
+    st.write("### First Few Rows", df.head())
+
+    # Check for missing values
+    missing_values = df.isnull().sum()
+    st.write("### Missing Values per Column", missing_values)
+
+    # Check for duplicates
+    duplicates = df.duplicated().sum()
+    st.write("### Number of Duplicate Rows", duplicates)
+
+    # Check data types
+    st.write("### Data Types of Columns", df.dtypes)
+
+    # Summary statistics
+    st.write("### Summary Statistics", df.describe())
+
+        # Check if the 'URL' column exists
+    if 'URL' in df.columns:
+        # Function to clean and standardize URLs
+        def clean_url(url):
+            if pd.isna(url):
+                return url
+            
+            url = url.strip()  # Remove leading and trailing spaces
+
+            # Fix double '://' in the URL
+            url = re.sub(r'http[s]?://:+', 'http://', url)
+            
+            # Add http scheme if missing
+            if not re.match(r'^https?://', url):
+                url = 'http://' + url
+            
+            # Remove unwanted characters (e.g., spaces, special characters)
+            url = re.sub(r'[^\w\s:/._-]', '', url)
+            
+            # Convert to lowercase for standardization
+            url = url.lower()
+            
+            # Validate URL format
+            try:
+                parsed = urlparse(url)
+                if not parsed.netloc:
+                    return None  # Invalid URL
+            except:
+                return None  # Invalid URL
+
+            return url
+        
+        # Apply the cleaning function to the 'URL' column
+        df['URL'] = df['URL'].apply(clean_url)
+        
+        # Display cleaned URLs
+        st.write("### Cleaned and Standardized URLs", df['URL'])
+
+
+    # Option to remove duplicates
+    if st.button('Remove Duplicates'):
+        duplicates_before = df.duplicated().sum()
+        df = df.drop_duplicates()
+        duplicates_after = df.duplicated().sum()
+        st.write("### Duplicates Removed")
+        st.write(f"Duplicates before removal: {duplicates_before}")
+        st.write(f"Duplicates after removal: {duplicates_after}")
+
+
+    # Clean the 'Description' column
+    df['Description'] = df['Description'].apply(lambda x: x.replace('extra_comma', '') if pd.notnull(x) else x)
+
+    # Display cleaned 'Description' column
+    st.write("### Cleaned 'Description' Column", df['Description'])
+
+    # Display column names
+    st.write("### Columns", df.columns)
+
+    # Clean the 'Stock' column
+    df['Stock'] = df['Stock'].str.lower().replace({
+        'out of stock': 'Out of Stock',
+        'in stock': 'In Stock'
+    })
+
+    st.write("### Cleaned 'Stock' Column", df['Stock'].unique())
+
+    # Clean the 'Date' column
+    df['Date'] = df['Date'].str.replace('/', '-').str.replace(',', '')
+    df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
+
+    st.write("### Cleaned 'Date' Column", df['Date'])
+
+    # Save the cleaned dataset
+    cleaned_file = "/home/cc/asha/cleaned_sublimproduct1.csv"
+    df.to_csv(cleaned_file, index=False)
+    st.write(f"### Cleaned dataset saved to {cleaned_file}")
+
+    # Option to download cleaned file
+    st.download_button(
+        label="Download Cleaned CSV",
+        data=df.to_csv(index=False),
+        file_name='cleaned_sublimproduct1.csv',
+        mime='text/csv'
+    )    

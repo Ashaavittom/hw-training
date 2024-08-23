@@ -1,0 +1,21 @@
+updation made in app.py
+
+
+1.invalid URL handling
+    -Added Functionality to  display invalid URL
+2.Remove Duplicates
+- Added Duplicates rows 3 and  Remove
+
+
+Task - Data Cleaning, trial.csv
+
+Process followed to do the task
+1. Installed Jupyter Lab: Developed and tested the Python code within Jupyter Lab.
+2. Set Up Streamlit: Installed Streamlit in a virtual environment using the command:
+    source myenv/bin/activate    # activate virtual env
+    pip install streamlit
+3. Created app.py: Used Sublime Text to create and edit the app.py file, optimizing the code developed in Jupyter Lab.
+4. Run the Streamlit App: Executed the Streamlit app from the terminal with the following commands:
+    source myenv/bin/activate    # activate virtual env
+    cd path/to/folder
+    streamlit run app.py    
