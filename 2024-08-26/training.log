@@ -1,0 +1,105 @@
+
+conduct team meeting
+Got some dataset,Analyse the dataset and detect the errors
+-using tools python pandas,jupyter lab
+
+
+Data QA - home_century21_us_2024_08_05.json
+
+
+Issues found->
+
+- Identified null values
+
+       All columns include empty values like   first name, middle name, lastname,office ,name,title,description,image_url,address,city, state, country, zipcode,office_phone_numbers[0] ,agent_phone_numbers[0]   agent_phone_numbers[1] ,email ,website ,profile_url ,languages[0]           languages[1] ,languages[2] ,languages[3] ,languages[4] ,languages[5] ,languages[6]  ,languages[7] ,languages[8] ,languages[9] 
+
+- All columns are in object datatype except email ,title  and zipcode
+
+1. First Name
+- Full Names
+Contains full names like ''Internal Lead Generation Team Internal Lead Generation Team "
+
+- Inconsistent Format:
+Should only have first names but includes multi-part names and titles.
+ - Redundant Entries:
+- Some names appear multiple times, suggesting redundancy.
+ - Inconsistent Special Characters (eg: */-)
+- Numbers instead of names
+
+2. Middle name
+- Special Characters Used as Middle Names
+- Some middle names are multiple times, suggesting redundancy.
+- Null values:
+Majority are null values
+
+3. Last  name
+- names are multiple times, suggesting redundancy
+- Null values
+- some names   case sensitive
+4. Office Name
+  -Null values
+ -Special characters & White space
+- names are multiple times, suggesting redundancy
+-case secsitive eg : Carioti of CENTURY 
+
+5. Title
+- column contain only Null values,no other issues
+6.Description
+ -Null value present,no other issues
+ 
+6. Image URL
+- Null values present, url are multiple times
+
+
+
+
+
+7.Address
+- Address are multiple times
+ - null value present
+ -Present Special characters and whitespace
+
+8.City
+  -Some Cites are multiple times
+  -present null values
+
+9.Country
+- Country 'United States ' Present in multiple times
+-Present Null values
+
+10.State
+- some states are Multiple times
+- Present null values
+
+11.zipcode
+     -Should be Numerical
+      - Present null Values
+      -Some zipcode are multiple time
+
+12.Profle _url
+     
+     - Present null Values
+      -Some Profile_url are multiple time
+
+13.Website _url
+     - Present null Values
+     -Some Website_url are multiple time   
+
+14.Office Phone Number
+
+  - Object Data Type: The column is of type object
+   - Present Null Values 
+  
+
+15. Agent Phone Number[0],Agent Phone Number[1]
+          -Is in object datatype, should be in numerical
+          -Present null values
+          -Some Agent Phone Numbers are multiple times 
+
+16. Email
+-   Only Null Values present,
+- no other issues
+
+17. Language[1] to Language[9]
+      - Present Majority in Null values
+      - Some languages are present in multiple times
