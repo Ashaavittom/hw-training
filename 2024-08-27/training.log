@@ -1,0 +1,40 @@
+conduct team meeting ,discussed about new tools sublim text ,that can be used to how to analyse the dataset
+Analyse the json data "edinarealty_2024_08_05.json" and detect the errors
+Data QA - edinarealty_2024_08_05.json
+Tool used - sublime text
+
+First Name : Case sesitive (eg: AN na), a one raw contain no name (eg:" ")
+
+Middle Name: Contains null values,No issues
+
+Last Name: No issues  
+                                                                                                                                                           office name : No issues 
+Title       : Column contain "title":"Trainer/REALTOR"  in the website site :trainer/RELATOR  R  , No other issues      
+                                                                         
+Description : Present null values ,out of 2398 rows, 1094 descriptions are unique 
+Language    : Majority null values, One column contain numeric values
+
+Image URL: Contains null values and some URLs checking there is no image on the website
+Address : Present null values ,no other issues
+
+city   : A column contain numeric data ,no other issues
+
+State : no other issues
+
+Zip code : Contain numeric data type,no other issues
+
+Email : Column contain No issues , unique id
+
+Web site url : Present null values ,no other issues
+
+Office phone number :  Present null values,no other issues
+
+Agent phone number  : Column contain no issues
+
+Profle url : no issues
+
+Social : Present null values 
+           -face book : present null values,out of 1217 rows, 1086  are unique
+           -Twitter     : Present null value out of 1217 rows, 165   are unique
+           -linkedin    :Present null values , out of 1217 rows, 593 linked in are unique
+           -other url    :Present null values , Majority present instagram urls and also include Youtube, url google plus url 
