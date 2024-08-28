@@ -1,0 +1,82 @@
+QA - ebby_2024_08_05.json                                                                                                                                                1.First name 
+   - column contain first name intead of office name irst_name":"190 - Richardson Office
+   -  the column contain full name shifted to first name ,middle _name and last_name is null (eg: "first_name":"Tray and Taye Morgan")
+   - out of  1542 raws, 846  First name unique   
+
+2.Middle_name
+    - majority null values
+    - out of  1542 raws, 122  Middle name unique
+
+3.Last name
+    -null values present
+    -out of  1542 raws, 1052 last name unique
+
+4.image_url
+    -Present null values
+    - out of  1542 raws, 1165 image url unique
+5.Title 
+
+   -null values present
+   -out of  1542 raws, 60 unique,no other issues
+
+6.Office name 
+   -column containingnull values
+   -out of  1542 raws, 54 unique,no other issues
+
+7.descriptions
+  -null values present
+  -out of  1542 raws, 1339 unique
+
+8.Languages
+   -Only  null values
+
+9.Addresses
+   -Present null values
+   -no other issues
+   - out of  1542 raws, 39  unique
+
+10.City
+  - Column containingnull values
+  - out of  1542 raws, 24  unique
+
+11.Zipcode
+    -Column contain numeric values 
+    -one column contain zipcode numeric number instead of  "&&&"
+     -present null values
+     -out of  1542 raws, 33  unique
+
+12.Country 
+   - No  issues
+
+13.State 
+  - No issues present
+
+14.Agent phone number
+   -column contain null values 
+   -few office phone numbers can be   seen in the agent phone number column
+   -column contain null values
+15.Office phone numbers
+    - A column contain Phone number instead of ""$#$""
+    - out of  23 raws, 20  unique
+
+ 16.Social 
+   - Majority  null values
+   - out of  1542 raws, 338  unique
+
+   facebook url  - Present null values 
+                 - out of  346 raws, 302  unique
+   twitter_url   - Present null values
+                            - out of  346 raws, 93  unique
+   linkedin _url - out of  346 raws, 54  unique
+                 - Majority null values 
+
+17.Website  
+     - Majority null values
+     - out of  1542 raws, 422  unique
+18.Email
+     - Present null values
+     - No other issues present
+
+19. Profile _ url
+     - No issues
+     - unique
